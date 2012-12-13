@@ -32,11 +32,11 @@
 //
 
 #import "Objective_ZipViewController.h"
-#import "../Objective-Zip/ZipFile.h"
-#import "../Objective-Zip/ZipException.h"
-#import "../Objective-Zip/FileInZipInfo.h"
-#import "../Objective-Zip/ZipWriteStream.h"
-#import "../Objective-Zip/ZipReadStream.h"
+#import "ZipFile.h"
+#import "ZipException.h"
+#import "FileInZipInfo.h"
+#import "ZipWriteStream.h"
+#import "ZipReadStream.h"
 
 @implementation Objective_ZipViewController
 
