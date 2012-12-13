@@ -34,36 +34,35 @@
 #import "ZipWriteStream.h"
 #import "ZipException.h"
 
-#include "zip.h"
-
-
 @implementation ZipWriteStream
 
-
-- (id) initWithZipFileStruct:(zipFile)zipFile fileNameInZip:(NSString *)fileNameInZip {
-	if (self= [super init]) {
-		_zipFile= zipFile;
-		_fileNameInZip= fileNameInZip;
+- (id)initWithZipFileStruct:(zipFile)zipFile fileNameInZip:(NSString *)fileNameInZip
+{
+	if (self = [super init])
+	{
+		_zipFile = zipFile;
+		_fileNameInZip = fileNameInZip;
 	}
 	
 	return self;
 }
 
-- (void) writeData:(NSData *)data {
-	int err= zipWriteInFileInZip(_zipFile, [data bytes], [data length]);
-	if (err < 0) {
-		NSString *reason= [NSString stringWithFormat:@"Error in writing '%@' in the zipfile", _fileNameInZip];
-		@throw [[ZipException alloc] initWithError:err reason:reason];
+- (void)writeData:(NSData *)data
+{
+	int err = zipWriteInFileInZip(_zipFile, [data bytes], [data length]);
+	if (err < 0)
+	{
+		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in writing '%@' in the zipfile", _fileNameInZip]];
 	}
 }
 
-- (void) finishedWriting {
-	int err= zipCloseFileInZip(_zipFile);
-	if (err != ZIP_OK) {
-		NSString *reason= [NSString stringWithFormat:@"Error in closing '%@' in the zipfile", _fileNameInZip];
-		@throw [[ZipException alloc] initWithError:err reason:reason];
+- (void)finishedWriting
+{
+	int err = zipCloseFileInZip(_zipFile);
+	if (err != ZIP_OK)
+	{
+		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in closing '%@' in the zipfile", _fileNameInZip]];
 	}
 }
-
 
 @end

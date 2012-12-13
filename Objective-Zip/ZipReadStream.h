@@ -32,20 +32,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #include "unzip.h"
 
-
-@interface ZipReadStream : NSObject {
+@interface ZipReadStream : NSObject
+{
 	NSString *_fileNameInZip;
 	
-@private
+	@private
 	unzFile _unzFile;
 }
 
-- (id) initWithUnzFileStruct:(unzFile)unzFile fileNameInZip:(NSString *)fileNameInZip;
-
-- (NSUInteger) readDataWithBuffer:(NSMutableData *)buffer;
-- (void) finishedReading;
+- (id)initWithUnzFileStruct:(unzFile)unzFile fileNameInZip:(NSString *)fileNameInZip;
+- (NSUInteger)readDataWithBuffer:(NSMutableData *)buffer;
+- (void)finishedReading;
 
 @end

@@ -32,10 +32,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #include "zip.h"
 #include "unzip.h"
-
 
 typedef enum {
 	ZipFileModeUnzip,
@@ -44,10 +42,10 @@ typedef enum {
 } ZipFileMode;
 
 typedef enum {
-	ZipCompressionLevelDefault= -1,
-	ZipCompressionLevelNone= 0,
-	ZipCompressionLevelFastest= 1,
-	ZipCompressionLevelBest= 9
+	ZipCompressionLevelDefault = -1,
+	ZipCompressionLevelNone = 0,
+	ZipCompressionLevelFastest = 1,
+	ZipCompressionLevelBest = 9
 } ZipCompressionLevel;	
 
 @class ZipReadStream;
@@ -64,25 +62,25 @@ typedef enum {
 	unzFile _unzFile;
 }
 
-- (id) initWithFileName:(NSString *)fileName mode:(ZipFileMode)mode;
+- (id)initWithFileName:(NSString *)fileName mode:(ZipFileMode)mode;
 
-- (ZipWriteStream *) writeFileInZipWithName:(NSString *)fileNameInZip compressionLevel:(ZipCompressionLevel)compressionLevel;
-- (ZipWriteStream *) writeFileInZipWithName:(NSString *)fileNameInZip fileDate:(NSDate *)fileDate compressionLevel:(ZipCompressionLevel)compressionLevel;
-- (ZipWriteStream *) writeFileInZipWithName:(NSString *)fileNameInZip fileDate:(NSDate *)fileDate compressionLevel:(ZipCompressionLevel)compressionLevel password:(NSString *)password crc32:(NSUInteger)crc32;
+- (ZipWriteStream *)writeFileInZipWithName:(NSString *)fileNameInZip compressionLevel:(ZipCompressionLevel)compressionLevel;
+- (ZipWriteStream *)writeFileInZipWithName:(NSString *)fileNameInZip fileDate:(NSDate *)fileDate compressionLevel:(ZipCompressionLevel)compressionLevel;
+- (ZipWriteStream *)writeFileInZipWithName:(NSString *)fileNameInZip fileDate:(NSDate *)fileDate compressionLevel:(ZipCompressionLevel)compressionLevel password:(NSString *)password crc32:(NSUInteger)crc32;
 
-- (NSString*) fileName;
-- (NSUInteger) numFilesInZip;
-- (NSArray *) listFileInZipInfos;
+- (NSString *)fileName;
+- (NSUInteger)numFilesInZip;
+- (NSArray *)listFileInZipInfos;
 
-- (void) goToFirstFileInZip;
-- (BOOL) goToNextFileInZip;
-- (BOOL) locateFileInZip:(NSString *)fileNameInZip;
+- (void)goToFirstFileInZip;
+- (BOOL)goToNextFileInZip;
+- (BOOL)locateFileInZip:(NSString *)fileNameInZip;
 
-- (FileInZipInfo *) getCurrentFileInZipInfo;
+- (FileInZipInfo *)getCurrentFileInZipInfo;
 
-- (ZipReadStream *) readCurrentFileInZip;
-- (ZipReadStream *) readCurrentFileInZipWithPassword:(NSString *)password;
+- (ZipReadStream *)readCurrentFileInZip;
+- (ZipReadStream *)readCurrentFileInZipWithPassword:(NSString *)password;
 
-- (void) close;
+- (void)close;
 
 @end

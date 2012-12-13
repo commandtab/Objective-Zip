@@ -32,20 +32,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #include "zip.h"
 
-
-@interface ZipWriteStream : NSObject {
+@interface ZipWriteStream : NSObject
+{
 	NSString *_fileNameInZip;
-
-@private
+	
+	@private
 	zipFile _zipFile;
 }
 
-- (id) initWithZipFileStruct:(zipFile)zipFile fileNameInZip:(NSString *)fileNameInZip;
-
-- (void) writeData:(NSData *)data;
-- (void) finishedWriting;
+- (id)initWithZipFileStruct:(zipFile)zipFile fileNameInZip:(NSString *)fileNameInZip;
+- (void)writeData:(NSData *)data;
+- (void)finishedWriting;
 
 @end
