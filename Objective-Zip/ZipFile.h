@@ -54,11 +54,12 @@ typedef enum {
 @class ZipWriteStream;
 @class FileInZipInfo;
 
-@interface ZipFile : NSObject {
+@interface ZipFile : NSObject
+{
 	NSString *_fileName;
 	ZipFileMode _mode;
 
-@private
+	@private
 	zipFile _zipFile;
 	unzFile _unzFile;
 }
