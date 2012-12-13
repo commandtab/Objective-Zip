@@ -33,14 +33,21 @@
 
 #import "ZipException.h"
 
+@interface ZipException ()
+
+@property (nonatomic, readwrite) NSInteger error;
+
+@end
 
 @implementation ZipException
+
+@synthesize error = _error;
 
 - (id) initWithReason:(NSString *)reason
 {
 	if (self = [super initWithName:@"ZipException" reason:reason userInfo:nil])
 	{
-		_error = 0;
+		self.error = 0;
 	}
 	
 	return self;
@@ -50,12 +57,10 @@
 {
 	if (self = [super initWithName:@"ZipException" reason:reason userInfo:nil])
 	{
-		_error = error;
+		self.error = error;
 	}
 	
 	return self;
 }
-
-@synthesize error = _error;
 
 @end

@@ -34,14 +34,23 @@
 #import "ZipReadStream.h"
 #import "ZipException.h"
 
+@interface ZipReadStream ()
+
+@property (assign) unzFile unzFile;
+
+@end
+
 @implementation ZipReadStream
+
+@synthesize fileNameInZip = _fileNameInZip;
+@synthesize unzFile = _unzFile;
 
 - (id)initWithUnzFileStruct:(unzFile)unzFile fileNameInZip:(NSString *)fileNameInZip
 {
 	if (self = [super init])
 	{
-		_unzFile = unzFile;
-		_fileNameInZip = fileNameInZip;
+		self.unzFile = unzFile;
+		self.fileNameInZip = fileNameInZip;
 	}
 	
 	return self;
@@ -49,10 +58,10 @@
 
 - (NSUInteger)readDataWithBuffer:(NSMutableData *)buffer
 {
-	int err = unzReadCurrentFile(_unzFile, [buffer mutableBytes], [buffer length]);
+	int err = unzReadCurrentFile(self.unzFile, [buffer mutableBytes], [buffer length]);
 	if (err < 0)
 	{
-		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in reading '%@' in the zipfile", _fileNameInZip]];
+		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in reading '%@' in the zipfile", self.fileNameInZip]];
 	}
 	
 	return err;
@@ -60,10 +69,10 @@
 
 - (void)finishedReading
 {
-	int err = unzCloseCurrentFile(_unzFile);
+	int err = unzCloseCurrentFile(self.unzFile);
 	if (err != UNZ_OK)
 	{
-		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in closing '%@' in the zipfile", _fileNameInZip]];
+		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in closing '%@' in the zipfile", self.fileNameInZip]];
 	}
 }
 

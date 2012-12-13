@@ -34,14 +34,23 @@
 #import "ZipWriteStream.h"
 #import "ZipException.h"
 
+@interface ZipWriteStream ()
+
+@property (assign) zipFile zipFile;
+
+@end
+
 @implementation ZipWriteStream
+
+@synthesize fileNameInZip = _fileNameInZip;
+@synthesize zipFile = _zipFile;
 
 - (id)initWithZipFileStruct:(zipFile)zipFile fileNameInZip:(NSString *)fileNameInZip
 {
 	if (self = [super init])
 	{
-		_zipFile = zipFile;
-		_fileNameInZip = fileNameInZip;
+		self.zipFile = zipFile;
+		self.fileNameInZip = fileNameInZip;
 	}
 	
 	return self;
@@ -49,19 +58,19 @@
 
 - (void)writeData:(NSData *)data
 {
-	int err = zipWriteInFileInZip(_zipFile, [data bytes], [data length]);
+	int err = zipWriteInFileInZip(self.zipFile, [data bytes], [data length]);
 	if (err < 0)
 	{
-		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in writing '%@' in the zipfile", _fileNameInZip]];
+		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in writing '%@' in the zipfile", self.fileNameInZip]];
 	}
 }
 
 - (void)finishedWriting
 {
-	int err = zipCloseFileInZip(_zipFile);
+	int err = zipCloseFileInZip(self.zipFile);
 	if (err != ZIP_OK)
 	{
-		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in closing '%@' in the zipfile", _fileNameInZip]];
+		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in closing '%@' in the zipfile", self.fileNameInZip]];
 	}
 }
 

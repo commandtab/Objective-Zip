@@ -33,6 +33,18 @@
 
 #import "FileInZipInfo.h"
 
+@interface FileInZipInfo ()
+
+@property (nonatomic, assign) NSUInteger length;
+@property (nonatomic, assign) ZipCompressionLevel level;
+@property (nonatomic, assign) BOOL crypted;
+@property (nonatomic, assign) NSUInteger size;
+@property (nonatomic, readwrite) NSDate *date;
+@property (nonatomic, assign) NSUInteger crc32;
+@property (nonatomic, readwrite) NSString *name;
+
+@end
+
 @implementation FileInZipInfo
 
 @synthesize name = _name;
@@ -47,13 +59,13 @@
 {
 	if (self = [super init])
 	{
-		_name = name;
-		_length = length;
-		_level = level;
-		_crypted = crypted;
-		_size = size;
-		_date = date;
-		_crc32 = crc32;
+		self.name = name;
+		self.length = length;
+		self.level = level;
+		self.crypted = crypted;
+		self.size = size;
+		self.date = date;
+		self.crc32 = crc32;
 	}
 	
 	return self;
