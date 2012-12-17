@@ -58,7 +58,7 @@
 
 - (void)writeData:(NSData *)data
 {
-	int err = zipWriteInFileInZip(self.zipFile, [data bytes], [data length]);
+	int err = zipWriteInFileInZip(self.zipFile, [data bytes], (unsigned int)[data length]);
 	if (err < 0)
 	{
 		@throw [[ZipException alloc] initWithError:err reason:[NSString stringWithFormat:@"Error in writing '%@' in the zipfile", self.fileNameInZip]];

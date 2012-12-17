@@ -105,12 +105,12 @@
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSDateComponents *date = [calendar components:(NSSecondCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit) fromDate:now];	
 	zip_fileinfo zi;
-	zi.tmz_date.tm_sec = [date second];
-	zi.tmz_date.tm_min = [date minute];
-	zi.tmz_date.tm_hour = [date hour];
-	zi.tmz_date.tm_mday = [date day];
-	zi.tmz_date.tm_mon = [date month] - 1;
-	zi.tmz_date.tm_year = [date year];
+	zi.tmz_date.tm_sec = (int)[date second];
+	zi.tmz_date.tm_min = (int)[date minute];
+	zi.tmz_date.tm_hour = (int)[date hour];
+	zi.tmz_date.tm_mday = (int)[date day];
+	zi.tmz_date.tm_mon = (int)[date month] - 1;
+	zi.tmz_date.tm_year = (int)[date year];
 	zi.internal_fa = 0;
 	zi.external_fa = 0;
 	zi.dosDate = 0;
@@ -134,12 +134,12 @@
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSDateComponents *date = [calendar components:(NSSecondCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit) fromDate:fileDate];	
 	zip_fileinfo zi;
-	zi.tmz_date.tm_sec = [date second];
-	zi.tmz_date.tm_min = [date minute];
-	zi.tmz_date.tm_hour = [date hour];
-	zi.tmz_date.tm_mday = [date day];
-	zi.tmz_date.tm_mon = [date month] - 1;
-	zi.tmz_date.tm_year = [date year];
+	zi.tmz_date.tm_sec = (int)[date second];
+	zi.tmz_date.tm_min = (int)[date minute];
+	zi.tmz_date.tm_hour = (int)[date hour];
+	zi.tmz_date.tm_mday = (int)[date day];
+	zi.tmz_date.tm_mon = (int)[date month] - 1;
+	zi.tmz_date.tm_year = (int)[date year];
 	zi.internal_fa = 0;
 	zi.external_fa = 0;
 	zi.dosDate = 0;
@@ -163,12 +163,12 @@
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSDateComponents *date = [calendar components:(NSSecondCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit) fromDate:fileDate];	
 	zip_fileinfo zi;
-	zi.tmz_date.tm_sec = [date second];
-	zi.tmz_date.tm_min = [date minute];
-	zi.tmz_date.tm_hour = [date hour];
-	zi.tmz_date.tm_mday = [date day];
-	zi.tmz_date.tm_mon = [date month] - 1;
-	zi.tmz_date.tm_year = [date year];
+	zi.tmz_date.tm_sec = (int)[date second];
+	zi.tmz_date.tm_min = (int)[date minute];
+	zi.tmz_date.tm_hour = (int)[date hour];
+	zi.tmz_date.tm_mday = (int)[date day];
+	zi.tmz_date.tm_mon = (int)[date month] - 1;
+	zi.tmz_date.tm_year = (int)[date year];
 	zi.internal_fa = 0;
 	zi.external_fa = 0;
 	zi.dosDate = 0;
@@ -199,9 +199,9 @@
 	return gi.number_entry;
 }
 
-- (NSArray *) listFileInZipInfos
+- (NSArray *)listFileInZipInfos
 {
-	int num = [self numFilesInZip];
+	int num = (int)[self numFilesInZip];
 	if (num < 1)
 	{
 		return [[NSArray alloc] init];
